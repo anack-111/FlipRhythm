@@ -19,7 +19,8 @@ public class LPController : MonoBehaviour
         originalScale = transform.localScale;
 
         // 회전 트윈
-        transform.DORotate(
+        transform.DORotate
+        (
             new Vector3(0, 0, -360),
             rotationSpeed,
             RotateMode.FastBeyond360
