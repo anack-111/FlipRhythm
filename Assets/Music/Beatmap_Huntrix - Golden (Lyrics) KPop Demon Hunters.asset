@@ -1,0 +1,1982 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc4b3ddc00a1d54a92c8b1bc8d91f81, type: 3}
+  m_Name: Beatmap_Huntrix - Golden (Lyrics) KPop Demon Hunters
+  m_EditorClassIdentifier: 
+  music: {fileID: 8300000, guid: 07f19570492ccf64e8deef6f8570a9fc, type: 3}
+  bpm: 121
+  segments:
+  - time: 0
+    length: 3
+    angle: -0.0045
+    speed: 1
+    reverse: 1
+  - time: 0.49586776
+    length: 3
+    angle: 1.1912035
+    speed: 1
+    reverse: 1
+  - time: 0.9917355
+    length: 3
+    angle: -1.6192774
+    speed: 1
+    reverse: 1
+  - time: 1.4876033
+    length: 3
+    angle: 5.1643744
+    speed: 1
+    reverse: 1
+  - time: 1.983471
+    length: 3
+    angle: -3.3228195
+    speed: 1
+    reverse: 1
+  - time: 2.479339
+    length: 3
+    angle: 0.45538718
+    speed: 1
+    reverse: 1
+  - time: 2.9752066
+    length: 3
+    angle: -1.6136785
+    speed: 1
+    reverse: 1
+  - time: 3.4710743
+    length: 3
+    angle: 5.35268
+    speed: 1
+    reverse: 1
+  - time: 3.966942
+    length: 3
+    angle: -0.7811367
+    speed: 1
+    reverse: 1
+  - time: 4.46281
+    length: 3
+    angle: 0.12929492
+    speed: 1
+    reverse: 1
+  - time: 4.958678
+    length: 3
+    angle: -2.1358154
+    speed: 1
+    reverse: 1
+  - time: 5.4545455
+    length: 3
+    angle: 2.756844
+    speed: 1
+    reverse: 1
+  - time: 5.950413
+    length: 3
+    angle: -4.0010905
+    speed: 1
+    reverse: 1
+  - time: 6.446281
+    length: 3
+    angle: 6.0691586
+    speed: 1
+    reverse: 1
+  - time: 6.9421487
+    length: 3
+    angle: -3.2417939
+    speed: 1
+    reverse: 1
+  - time: 7.4380164
+    length: 3
+    angle: 1.0025797
+    speed: 1
+    reverse: 1
+  - time: 7.933884
+    length: 3
+    angle: -1.7971287
+    speed: 1
+    reverse: 1
+  - time: 8.429752
+    length: 3
+    angle: 7.9171133
+    speed: 1
+    reverse: 1
+  - time: 8.92562
+    length: 3
+    angle: -1.1465375
+    speed: 1
+    reverse: 1
+  - time: 9.421488
+    length: 3
+    angle: 1.1957287
+    speed: 1
+    reverse: 1
+  - time: 9.917356
+    length: 3
+    angle: -1.8911369
+    speed: 1
+    reverse: 1
+  - time: 10.413223
+    length: 3
+    angle: 1.6332415
+    speed: 1
+    reverse: 1
+  - time: 10.909091
+    length: 3
+    angle: -1.9014361
+    speed: 1
+    reverse: 1
+  - time: 11.404959
+    length: 3
+    angle: 2.8382955
+    speed: 1
+    reverse: 1
+  - time: 11.900826
+    length: 3
+    angle: -5.6386733
+    speed: 1
+    reverse: 1
+  - time: 12.396694
+    length: 3
+    angle: 0.35407662
+    speed: 1
+    reverse: 1
+  - time: 12.892562
+    length: 3
+    angle: -3.7814326
+    speed: 1
+    reverse: 1
+  - time: 13.38843
+    length: 3
+    angle: 4.595878
+    speed: 1
+    reverse: 1
+  - time: 13.884297
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 14.380165
+    length: 3
+    angle: 0.26067448
+    speed: 1
+    reverse: 1
+  - time: 14.876033
+    length: 3
+    angle: -0.16753429
+    speed: 1
+    reverse: 1
+  - time: 15.371901
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 15.867768
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 16.363636
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 16.859505
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 17.355373
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 17.851242
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 18.34711
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 18.84298
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 19.338848
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 19.834717
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 20.330585
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 20.826454
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 21.322323
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 21.818192
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 22.31406
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 22.809929
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 23.305798
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 23.801666
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 24.297535
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 24.793404
+    length: 3
+    angle: -36.777164
+    speed: 1
+    reverse: 0
+  - time: 25.289272
+    length: 3
+    angle: 29.675005
+    speed: 1
+    reverse: 1
+  - time: 25.785141
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 26.28101
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 26.776878
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 27.272747
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 27.768616
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 28.264484
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 28.760353
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 29.256222
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 29.75209
+    length: 3
+    angle: -40.620575
+    speed: 1
+    reverse: 0
+  - time: 30.24796
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 30.743828
+    length: 3
+    angle: -3.6657882
+    speed: 1
+    reverse: 1
+  - time: 31.239697
+    length: 3
+    angle: 19.8062
+    speed: 1
+    reverse: 1
+  - time: 31.735565
+    length: 3
+    angle: -8.164574
+    speed: 1
+    reverse: 1
+  - time: 32.231434
+    length: 3
+    angle: 16.962246
+    speed: 1
+    reverse: 1
+  - time: 32.727303
+    length: 3
+    angle: -19.517097
+    speed: 1
+    reverse: 1
+  - time: 33.22317
+    length: 3
+    angle: 11.8291235
+    speed: 1
+    reverse: 1
+  - time: 33.71904
+    length: 3
+    angle: -3.4529328
+    speed: 1
+    reverse: 1
+  - time: 34.21491
+    length: 3
+    angle: 20.779797
+    speed: 1
+    reverse: 1
+  - time: 34.710777
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 35.206646
+    length: 3
+    angle: 7.150396
+    speed: 1
+    reverse: 1
+  - time: 35.702515
+    length: 3
+    angle: -4.5157776
+    speed: 1
+    reverse: 1
+  - time: 36.198383
+    length: 3
+    angle: 11.75826
+    speed: 1
+    reverse: 1
+  - time: 36.694252
+    length: 3
+    angle: -11.01686
+    speed: 1
+    reverse: 1
+  - time: 37.19012
+    length: 3
+    angle: 12.461496
+    speed: 1
+    reverse: 1
+  - time: 37.68599
+    length: 3
+    angle: -20.83721
+    speed: 1
+    reverse: 1
+  - time: 38.181858
+    length: 3
+    angle: 12.981642
+    speed: 1
+    reverse: 1
+  - time: 38.677727
+    length: 3
+    angle: -31.989168
+    speed: 1
+    reverse: 1
+  - time: 39.173595
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 39.669464
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 40.165333
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 40.6612
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 41.15707
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 41.65294
+    length: 3
+    angle: -37.92692
+    speed: 1
+    reverse: 0
+  - time: 42.148808
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 42.644676
+    length: 3
+    angle: -25.079247
+    speed: 1
+    reverse: 1
+  - time: 43.140545
+    length: 3
+    angle: 14.91647
+    speed: 1
+    reverse: 1
+  - time: 43.636414
+    length: 3
+    angle: -25.21266
+    speed: 1
+    reverse: 1
+  - time: 44.132282
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 44.62815
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 45.12402
+    length: 3
+    angle: 36.74781
+    speed: 1
+    reverse: 0
+  - time: 45.61989
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 46.115757
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 46.611626
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 47.107494
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 47.603363
+    length: 3
+    angle: -38.2762
+    speed: 1
+    reverse: 0
+  - time: 48.09923
+    length: 3
+    angle: 16.769705
+    speed: 1
+    reverse: 1
+  - time: 48.5951
+    length: 3
+    angle: -18.140709
+    speed: 1
+    reverse: 1
+  - time: 49.09097
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 49.586838
+    length: 3
+    angle: -20.484219
+    speed: 1
+    reverse: 1
+  - time: 50.082706
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 50.578575
+    length: 3
+    angle: -34.53155
+    speed: 1
+    reverse: 0
+  - time: 51.074444
+    length: 3
+    angle: 9.92351
+    speed: 1
+    reverse: 1
+  - time: 51.570312
+    length: 3
+    angle: -21.160221
+    speed: 1
+    reverse: 1
+  - time: 52.06618
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 52.56205
+    length: 3
+    angle: -38.501972
+    speed: 1
+    reverse: 0
+  - time: 53.05792
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 53.553787
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 54.049656
+    length: 3
+    angle: 15.183613
+    speed: 1
+    reverse: 1
+  - time: 54.545525
+    length: 3
+    angle: -44.654106
+    speed: 1
+    reverse: 0
+  - time: 55.041393
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 55.537262
+    length: 3
+    angle: -18.696953
+    speed: 1
+    reverse: 1
+  - time: 56.03313
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 56.529
+    length: 3
+    angle: -10.608166
+    speed: 1
+    reverse: 1
+  - time: 57.024868
+    length: 3
+    angle: 16.011412
+    speed: 1
+    reverse: 1
+  - time: 57.520737
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 58.016605
+    length: 3
+    angle: 24.488256
+    speed: 1
+    reverse: 1
+  - time: 58.512474
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 59.008343
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 59.50421
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 60.00008
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 60.49595
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 60.991817
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 61.487686
+    length: 3
+    angle: -38.24896
+    speed: 1
+    reverse: 0
+  - time: 61.983555
+    length: 3
+    angle: 5.1178904
+    speed: 1
+    reverse: 1
+  - time: 62.479424
+    length: 3
+    angle: -26.264896
+    speed: 1
+    reverse: 1
+  - time: 62.975292
+    length: 3
+    angle: 21.421312
+    speed: 1
+    reverse: 1
+  - time: 63.47116
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 63.96703
+    length: 3
+    angle: 6.1110296
+    speed: 1
+    reverse: 1
+  - time: 64.4629
+    length: 3
+    angle: -43.615776
+    speed: 1
+    reverse: 0
+  - time: 64.95876
+    length: 3
+    angle: 38.469723
+    speed: 1
+    reverse: 0
+  - time: 65.45463
+    length: 3
+    angle: -32.349068
+    speed: 1
+    reverse: 1
+  - time: 65.95049
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 66.44636
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 66.94222
+    length: 3
+    angle: 44.94583
+    speed: 1
+    reverse: 0
+  - time: 67.43809
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 67.93395
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 68.42982
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 68.92568
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 69.42155
+    length: 3
+    angle: -41.89117
+    speed: 1
+    reverse: 0
+  - time: 69.91741
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 70.41328
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 70.90914
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 71.40501
+    length: 3
+    angle: -37.510986
+    speed: 1
+    reverse: 0
+  - time: 71.90087
+    length: 3
+    angle: 42.330093
+    speed: 1
+    reverse: 0
+  - time: 72.396736
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 72.8926
+    length: 3
+    angle: 36.0741
+    speed: 1
+    reverse: 0
+  - time: 73.388466
+    length: 3
+    angle: -10.938034
+    speed: 1
+    reverse: 1
+  - time: 73.88433
+    length: 3
+    angle: 40.944046
+    speed: 1
+    reverse: 0
+  - time: 74.380196
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 74.87606
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 75.371925
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 75.86779
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 76.363655
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 76.85952
+    length: 3
+    angle: 15.562221
+    speed: 1
+    reverse: 1
+  - time: 77.355385
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 77.85125
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 78.347115
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 78.84298
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 79.338844
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 79.83471
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 80.330574
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 80.82644
+    length: 3
+    angle: 39.36151
+    speed: 1
+    reverse: 0
+  - time: 81.3223
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 81.81817
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 82.31403
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 82.8099
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 83.30576
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 83.80163
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 84.29749
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 84.79336
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 85.28922
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 85.78509
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 86.28095
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 86.77682
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 87.27268
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 87.76855
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 88.26441
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 88.76028
+    length: 3
+    angle: 29.183365
+    speed: 1
+    reverse: 1
+  - time: 89.25614
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 89.75201
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 90.24787
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 90.74374
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 91.2396
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 91.735466
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 92.23133
+    length: 3
+    angle: -31.505632
+    speed: 1
+    reverse: 1
+  - time: 92.727196
+    length: 3
+    angle: 10.427702
+    speed: 1
+    reverse: 1
+  - time: 93.22306
+    length: 3
+    angle: -2.1975703
+    speed: 1
+    reverse: 1
+  - time: 93.718925
+    length: 3
+    angle: 2.4032934
+    speed: 1
+    reverse: 1
+  - time: 94.21479
+    length: 3
+    angle: -18.049927
+    speed: 1
+    reverse: 1
+  - time: 94.710655
+    length: 3
+    angle: 2.3482578
+    speed: 1
+    reverse: 1
+  - time: 95.20652
+    length: 3
+    angle: -12.146518
+    speed: 1
+    reverse: 1
+  - time: 95.702385
+    length: 3
+    angle: 5.0879307
+    speed: 1
+    reverse: 1
+  - time: 96.19825
+    length: 3
+    angle: -20.362091
+    speed: 1
+    reverse: 1
+  - time: 96.694115
+    length: 3
+    angle: 25.053139
+    speed: 1
+    reverse: 1
+  - time: 97.18998
+    length: 3
+    angle: -39.40034
+    speed: 1
+    reverse: 0
+  - time: 97.685844
+    length: 3
+    angle: 2.2285342
+    speed: 1
+    reverse: 1
+  - time: 98.18171
+    length: 3
+    angle: -16.730188
+    speed: 1
+    reverse: 1
+  - time: 98.677574
+    length: 3
+    angle: 8.91121
+    speed: 1
+    reverse: 1
+  - time: 99.17344
+    length: 3
+    angle: -0.9138951
+    speed: 1
+    reverse: 1
+  - time: 99.669304
+    length: 3
+    angle: 13.535387
+    speed: 1
+    reverse: 1
+  - time: 100.16517
+    length: 3
+    angle: -17.555923
+    speed: 1
+    reverse: 1
+  - time: 100.66103
+    length: 3
+    angle: 1.9603035
+    speed: 1
+    reverse: 1
+  - time: 101.1569
+    length: 3
+    angle: -0.80753726
+    speed: 1
+    reverse: 1
+  - time: 101.65276
+    length: 3
+    angle: 5.533967
+    speed: 1
+    reverse: 1
+  - time: 102.14863
+    length: 3
+    angle: -2.5504472
+    speed: 1
+    reverse: 1
+  - time: 102.64449
+    length: 3
+    angle: 0.60751307
+    speed: 1
+    reverse: 1
+  - time: 103.14036
+    length: 3
+    angle: -0.5946869
+    speed: 1
+    reverse: 1
+  - time: 103.63622
+    length: 3
+    angle: 0.39089927
+    speed: 1
+    reverse: 1
+  - time: 104.13209
+    length: 3
+    angle: -44.548874
+    speed: 1
+    reverse: 0
+  - time: 104.62795
+    length: 3
+    angle: 25.342312
+    speed: 1
+    reverse: 1
+  - time: 105.12382
+    length: 3
+    angle: -20.616793
+    speed: 1
+    reverse: 1
+  - time: 105.61968
+    length: 3
+    angle: 7.611701
+    speed: 1
+    reverse: 1
+  - time: 106.11555
+    length: 3
+    angle: -29.052105
+    speed: 1
+    reverse: 1
+  - time: 106.61141
+    length: 3
+    angle: 14.9793825
+    speed: 1
+    reverse: 1
+  - time: 107.10728
+    length: 3
+    angle: -1.2040303
+    speed: 1
+    reverse: 1
+  - time: 107.60314
+    length: 3
+    angle: 9.498356
+    speed: 1
+    reverse: 1
+  - time: 108.09901
+    length: 3
+    angle: -9.731479
+    speed: 1
+    reverse: 1
+  - time: 108.59487
+    length: 3
+    angle: 0.7332163
+    speed: 1
+    reverse: 1
+  - time: 109.09074
+    length: 3
+    angle: -2.4619896
+    speed: 1
+    reverse: 1
+  - time: 109.5866
+    length: 3
+    angle: 3.7394996
+    speed: 1
+    reverse: 1
+  - time: 110.082466
+    length: 3
+    angle: -4.3655763
+    speed: 1
+    reverse: 1
+  - time: 110.57833
+    length: 3
+    angle: 2.0961998
+    speed: 1
+    reverse: 1
+  - time: 111.074196
+    length: 3
+    angle: -0.27037418
+    speed: 1
+    reverse: 1
+  - time: 111.57006
+    length: 3
+    angle: 0.7482874
+    speed: 1
+    reverse: 1
+  - time: 112.065926
+    length: 3
+    angle: -8.370198
+    speed: 1
+    reverse: 1
+  - time: 112.56179
+    length: 3
+    angle: 17.773563
+    speed: 1
+    reverse: 1
+  - time: 113.057655
+    length: 3
+    angle: -44.24614
+    speed: 1
+    reverse: 0
+  - time: 113.55352
+    length: 3
+    angle: 20.427006
+    speed: 1
+    reverse: 1
+  - time: 114.049385
+    length: 3
+    angle: -4.5640335
+    speed: 1
+    reverse: 1
+  - time: 114.54525
+    length: 3
+    angle: 10.624363
+    speed: 1
+    reverse: 1
+  - time: 115.041115
+    length: 3
+    angle: -14.798463
+    speed: 1
+    reverse: 1
+  - time: 115.53698
+    length: 3
+    angle: 10.931591
+    speed: 1
+    reverse: 1
+  - time: 116.032845
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 116.52871
+    length: 3
+    angle: 23.832739
+    speed: 1
+    reverse: 1
+  - time: 117.024574
+    length: 3
+    angle: -23.324635
+    speed: 1
+    reverse: 1
+  - time: 117.52044
+    length: 3
+    angle: 21.603687
+    speed: 1
+    reverse: 1
+  - time: 118.016304
+    length: 3
+    angle: -20.939983
+    speed: 1
+    reverse: 1
+  - time: 118.51217
+    length: 3
+    angle: 13.335505
+    speed: 1
+    reverse: 1
+  - time: 119.00803
+    length: 3
+    angle: -5.8911896
+    speed: 1
+    reverse: 1
+  - time: 119.5039
+    length: 3
+    angle: 14.027096
+    speed: 1
+    reverse: 1
+  - time: 119.99976
+    length: 3
+    angle: -23.247177
+    speed: 1
+    reverse: 1
+  - time: 120.49563
+    length: 3
+    angle: 31.172462
+    speed: 1
+    reverse: 1
+  - time: 120.99149
+    length: 3
+    angle: -37.336926
+    speed: 1
+    reverse: 0
+  - time: 121.48736
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 121.98322
+    length: 3
+    angle: -25.03953
+    speed: 1
+    reverse: 1
+  - time: 122.47909
+    length: 3
+    angle: 8.922296
+    speed: 1
+    reverse: 1
+  - time: 122.97495
+    length: 3
+    angle: -35.29209
+    speed: 1
+    reverse: 0
+  - time: 123.47082
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 123.96668
+    length: 3
+    angle: -22.962048
+    speed: 1
+    reverse: 1
+  - time: 124.46255
+    length: 3
+    angle: 14.715998
+    speed: 1
+    reverse: 1
+  - time: 124.95841
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 125.45428
+    length: 3
+    angle: 34.909714
+    speed: 1
+    reverse: 0
+  - time: 125.95014
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 126.44601
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 126.94187
+    length: 3
+    angle: -37.589813
+    speed: 1
+    reverse: 0
+  - time: 127.43774
+    length: 3
+    angle: 23.009003
+    speed: 1
+    reverse: 1
+  - time: 127.9336
+    length: 3
+    angle: -21.436424
+    speed: 1
+    reverse: 1
+  - time: 128.42947
+    length: 3
+    angle: 14.433557
+    speed: 1
+    reverse: 1
+  - time: 128.92534
+    length: 3
+    angle: -38.750214
+    speed: 1
+    reverse: 0
+  - time: 129.4212
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 129.91707
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 130.41293
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 130.9088
+    length: 3
+    angle: -2.432713
+    speed: 1
+    reverse: 1
+  - time: 131.40466
+    length: 3
+    angle: 33.008076
+    speed: 1
+    reverse: 1
+  - time: 131.90053
+    length: 3
+    angle: -33.029644
+    speed: 1
+    reverse: 1
+  - time: 132.3964
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 132.89226
+    length: 3
+    angle: -10.010532
+    speed: 1
+    reverse: 1
+  - time: 133.38812
+    length: 3
+    angle: 38.830956
+    speed: 1
+    reverse: 0
+  - time: 133.88399
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 134.37985
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 134.87572
+    length: 3
+    angle: -44.11623
+    speed: 1
+    reverse: 0
+  - time: 135.37158
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 135.86745
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 136.36331
+    length: 3
+    angle: 23.961948
+    speed: 1
+    reverse: 1
+  - time: 136.85918
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 137.35504
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 137.8509
+    length: 3
+    angle: -39.165054
+    speed: 1
+    reverse: 0
+  - time: 138.34677
+    length: 3
+    angle: 15.927832
+    speed: 1
+    reverse: 1
+  - time: 138.84264
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 139.3385
+    length: 3
+    angle: 11.81612
+    speed: 1
+    reverse: 1
+  - time: 139.83437
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 140.33023
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 140.8261
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 141.32196
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 141.81783
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 142.31369
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 142.80956
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 143.30542
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 143.80128
+    length: 3
+    angle: -8.769136
+    speed: 1
+    reverse: 1
+  - time: 144.29715
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 144.79301
+    length: 3
+    angle: -44.267723
+    speed: 1
+    reverse: 0
+  - time: 145.28888
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 145.78474
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 146.28061
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 146.77647
+    length: 3
+    angle: -41.626335
+    speed: 1
+    reverse: 0
+  - time: 147.27234
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 147.7682
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 148.26407
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 148.75993
+    length: 3
+    angle: -43.454254
+    speed: 1
+    reverse: 0
+  - time: 149.2558
+    length: 3
+    angle: 40.730766
+    speed: 1
+    reverse: 0
+  - time: 149.75166
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 150.24753
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 150.7434
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 151.23926
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 151.73512
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 152.23099
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 152.72685
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 153.22272
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 153.71858
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 154.21445
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 154.71031
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 155.20618
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 155.70204
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 156.1979
+    length: 3
+    angle: 18.545092
+    speed: 1
+    reverse: 1
+  - time: 156.69377
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 157.18964
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 157.6855
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 158.18137
+    length: 3
+    angle: 41.11792
+    speed: 1
+    reverse: 0
+  - time: 158.67723
+    length: 3
+    angle: -34.10341
+    speed: 1
+    reverse: 0
+  - time: 159.1731
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 159.66896
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 160.16483
+    length: 3
+    angle: 20.732796
+    speed: 1
+    reverse: 1
+  - time: 160.66069
+    length: 3
+    angle: -32.685715
+    speed: 1
+    reverse: 1
+  - time: 161.15656
+    length: 3
+    angle: 11.968711
+    speed: 1
+    reverse: 1
+  - time: 161.65242
+    length: 3
+    angle: -21.225317
+    speed: 1
+    reverse: 1
+  - time: 162.14828
+    length: 3
+    angle: 17.007008
+    speed: 1
+    reverse: 1
+  - time: 162.64415
+    length: 3
+    angle: -32.966965
+    speed: 1
+    reverse: 1
+  - time: 163.14001
+    length: 3
+    angle: 25.703352
+    speed: 1
+    reverse: 1
+  - time: 163.63588
+    length: 3
+    angle: -29.87875
+    speed: 1
+    reverse: 1
+  - time: 164.13174
+    length: 3
+    angle: 25.9594
+    speed: 1
+    reverse: 1
+  - time: 164.62761
+    length: 3
+    angle: -14.595549
+    speed: 1
+    reverse: 1
+  - time: 165.12347
+    length: 3
+    angle: 40.268887
+    speed: 1
+    reverse: 0
+  - time: 165.61934
+    length: 3
+    angle: -30.593225
+    speed: 1
+    reverse: 1
+  - time: 166.1152
+    length: 3
+    angle: 35.574116
+    speed: 1
+    reverse: 0
+  - time: 166.61107
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 167.10693
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 167.6028
+    length: 3
+    angle: -38.35477
+    speed: 1
+    reverse: 0
+  - time: 168.09866
+    length: 3
+    angle: 22.44559
+    speed: 1
+    reverse: 1
+  - time: 168.59453
+    length: 3
+    angle: -24.943369
+    speed: 1
+    reverse: 1
+  - time: 169.0904
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 169.58626
+    length: 3
+    angle: -40.72833
+    speed: 1
+    reverse: 0
+  - time: 170.08212
+    length: 3
+    angle: 41.012947
+    speed: 1
+    reverse: 0
+  - time: 170.57799
+    length: 3
+    angle: -5.194186
+    speed: 1
+    reverse: 1
+  - time: 171.07385
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 171.56972
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 172.06558
+    length: 3
+    angle: 14.772512
+    speed: 1
+    reverse: 1
+  - time: 172.56145
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 173.05731
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 173.55318
+    length: 3
+    angle: -45
+    speed: 1
+    reverse: 0
+  - time: 174.04904
+    length: 3
+    angle: 45
+    speed: 1
+    reverse: 0
+  - time: 174.5449
+    length: 3
+    angle: -35.251846
+    speed: 1
+    reverse: 0
+  - time: 175.04077
+    length: 3
+    angle: 3.6082692
+    speed: 1
+    reverse: 1
+  - time: 175.53664
+    length: 3
+    angle: -1.7212362
+    speed: 1
+    reverse: 1
+  - time: 176.0325
+    length: 3
+    angle: 1.306987
+    speed: 1
+    reverse: 1
+  - time: 176.52837
+    length: 3
+    angle: -1.9283551
+    speed: 1
+    reverse: 1
+  - time: 177.02423
+    length: 3
+    angle: 1.5968112
+    speed: 1
+    reverse: 1
+  - time: 177.5201
+    length: 3
+    angle: -1.1422974
+    speed: 1
+    reverse: 1
+  - time: 178.01596
+    length: 3
+    angle: 2.6384933
+    speed: 1
+    reverse: 1
+  - time: 178.51183
+    length: 3
+    angle: -2.5362964
+    speed: 1
+    reverse: 1
+  - time: 179.00769
+    length: 3
+    angle: 0.71478844
+    speed: 1
+    reverse: 1
+  - time: 179.50356
+    length: 3
+    angle: -2.2520444
+    speed: 1
+    reverse: 1
+  - time: 179.99942
+    length: 3
+    angle: 0.94768393
+    speed: 1
+    reverse: 1
+  - time: 180.49529
+    length: 3
+    angle: -1.6915228
+    speed: 1
+    reverse: 1
+  - time: 180.99115
+    length: 3
+    angle: 1.8862861
+    speed: 1
+    reverse: 1
+  - time: 181.48701
+    length: 3
+    angle: -0.48676237
+    speed: 1
+    reverse: 1
+  - time: 181.98288
+    length: 3
+    angle: 1.5183073
+    speed: 1
+    reverse: 1
+  - time: 182.47874
+    length: 3
+    angle: -1.6068219
+    speed: 1
+    reverse: 1
+  - time: 182.97461
+    length: 3
+    angle: 1.0694441
+    speed: 1
+    reverse: 1
+  - time: 183.47047
+    length: 3
+    angle: -3.640789
+    speed: 1
+    reverse: 1
+  - time: 183.96634
+    length: 3
+    angle: 2.09976
+    speed: 1
+    reverse: 1
+  - time: 184.4622
+    length: 3
+    angle: -3.3382287
+    speed: 1
+    reverse: 1
+  - time: 184.95807
+    length: 3
+    angle: 5.621251
+    speed: 1
+    reverse: 1
+  - time: 185.45393
+    length: 3
+    angle: -0.6137895
+    speed: 1
+    reverse: 1
+  - time: 185.9498
+    length: 3
+    angle: 3.1708763
+    speed: 1
+    reverse: 1
+  - time: 186.44566
+    length: 3
+    angle: -6.9253106
+    speed: 1
+    reverse: 1
+  - time: 186.94153
+    length: 3
+    angle: 3.3055248
+    speed: 1
+    reverse: 1
+  - time: 187.4374
+    length: 3
+    angle: -6.535403
+    speed: 1
+    reverse: 1
+  - time: 187.93326
+    length: 3
+    angle: 2.6357484
+    speed: 1
+    reverse: 1
+  - time: 188.42912
+    length: 3
+    angle: -14.511909
+    speed: 1
+    reverse: 1
+  - time: 188.92499
+    length: 3
+    angle: 11.142352
+    speed: 1
+    reverse: 1
+  - time: 189.42085
+    length: 3
+    angle: -1.5069687
+    speed: 1
+    reverse: 1
+  - time: 189.91672
+    length: 3
+    angle: 0.38445982
+    speed: 1
+    reverse: 1
+  - time: 190.41258
+    length: 3
+    angle: -0.05484614
+    speed: 1
+    reverse: 1
+  - time: 190.90845
+    length: 3
+    angle: 0.008316619
+    speed: 1
+    reverse: 1
+  - time: 191.40431
+    length: 3
+    angle: -0.0045
+    speed: 1
+    reverse: 1
+  - time: 191.90018
+    length: 3
+    angle: 0.0045
+    speed: 1
+    reverse: 1
+  - time: 192.39604
+    length: 3
+    angle: -0.0045
+    speed: 1
+    reverse: 1
+  - time: 192.8919
+    length: 3
+    angle: 0.0045
+    speed: 1
+    reverse: 1
+  - time: 193.38777
+    length: 3
+    angle: -0.0045
+    speed: 1
+    reverse: 1
+  - time: 193.88364
+    length: 3
+    angle: 0.0045
+    speed: 1
+    reverse: 1
+  - time: 194.3795
+    length: 3
+    angle: -0.0045
+    speed: 1
+    reverse: 1
