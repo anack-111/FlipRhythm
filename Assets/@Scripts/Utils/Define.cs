@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Define
 {
+    public enum ENoteType
+    {
+        None,
+        Tap,
+        Slide
+    }
+
+
+
     public enum EObjectType
     {
         None,
