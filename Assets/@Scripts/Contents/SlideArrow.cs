@@ -63,11 +63,11 @@ public class SlideArrow : MonoBehaviour
     {
         if (finished || input == null) return;
 
-        int currentZone = GetClosestZone();
-        if (!input.IsTouchingZone(currentZone))
-        {
-            Miss();
-        }
+        //int currentZone = GetClosestZone();
+        //if (!input.IsTouchingZone(currentZone))
+        //{
+        //    Miss();
+        //}
     }
 
     int GetClosestZone()

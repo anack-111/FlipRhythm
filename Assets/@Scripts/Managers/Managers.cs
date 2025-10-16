@@ -23,7 +23,6 @@ public class Managers : MonoBehaviour
     //public static GameManager Game { get { return Instance?._game; } }
     public static ObjectManager Object { get { return Instance?._object; } }
 
-    //public static JudgeManager Judge { get { return Instance?._judge; } }
     #endregion
 
     #region Core
