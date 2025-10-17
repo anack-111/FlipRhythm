@@ -2227,7 +2227,7 @@ MonoBehaviour:
   music: {fileID: 1979075477}
   input: {fileID: 1878747878}
   tapNotePrefab: {fileID: 3313568382970091723, guid: c2d2204f108e41943bf34290f5631c50, type: 3}
-  approachTime: 3
+  approachTime: 2
   _startPos: {fileID: 774435509}
   MusicName: Hunters
 --- !u!4 &1979075479

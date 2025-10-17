@@ -4,8 +4,6 @@ using TMPro;
 
 public class TapNote : MonoBehaviour
 {
-    public enum HitResult { None, Perfect, Good, Miss }
-
     public TextMeshProUGUI _zoneText;
     int zoneIndex;
     float hitTime;
@@ -19,6 +17,10 @@ public class TapNote : MonoBehaviour
 
     float perfectWin = 0.2f;
     float goodWin = 0.5f;
+
+    // DSP 기반 이동을 위해 추가 필드
+    double spawnDspTime;
+    float startX;
 
     // 외부에서 참조할 수 있도록 프로퍼티 추가
     public int ZoneIndex => zoneIndex;
@@ -34,32 +36,36 @@ public class TapNote : MonoBehaviour
         judgeX = jx;
         approachTime = approach;
         sr = GetComponent<SpriteRenderer>();
+        startX = transform.position.x;
 
-        // 더 이상 이벤트로 구독하지 않음 (InputRouter가 직접 적절한 노트를 찾아 호출)
         _zoneText.text = zoneIndex.ToString();
+
+        // DOTween으로 Linear 등속 이동 (부드럽고 정확)
+        transform.DOMoveX(judgeX, approachTime)
+            .SetEase(Ease.Linear)
+            .SetUpdate(UpdateType.Normal, true);
     }
 
     void OnDestroy()
     {
-        // 이벤트 구독을 하지 않으므로 해제 불필요
     }
+
+
 
     void Update()
     {
-        float t = music.time;
-        float moveStart = hitTime - approachTime;
-        float moveProgress = Mathf.InverseLerp(moveStart, hitTime, t);
-        float x = Mathf.Lerp(8f, judgeX, moveProgress);
-        transform.position = new Vector3(x, transform.position.y, 0);
 
-        if (!judged && t > hitTime + goodWin)
+
+        // 판정 타이밍 체크는 기존대로 music.time 사용 (판정 정확성 유지)
+        if (!judged && music != null && music.time > hitTime + goodWin)
         {
             Miss();
         }
     }
 
     // InputRouter가 선택한 노트에 대해 판정을 시도하도록 public으로 노출
-    // 결과를 반환해서 호출자(InputRouter)가 후속 연출을 할 수 있게 함
+    public enum HitResult { None, Perfect, Good, Miss }
+
     public HitResult TryHandleHit(float t)
     {
         if (judged) return HitResult.None;
