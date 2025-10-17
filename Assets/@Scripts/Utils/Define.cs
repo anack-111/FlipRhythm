@@ -18,6 +18,7 @@ public class Define
         None,
         Player,
         Enemy,
+        Note,
     }
 
     public enum EState

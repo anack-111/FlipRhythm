@@ -5,7 +5,8 @@ using System.IO;
 public class RawRecorder : MonoBehaviour
 {
     public AudioSource music;
-    List<float> hits = new();
+    List<HitData> hits = new();
+    public string _fileName = "raw.json";
 
     void Start()
     {
@@ -22,32 +23,46 @@ public class RawRecorder : MonoBehaviour
     {
         if (music == null) return;
 
-        // 스페이스로 시간 기록
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 숫자패드 1~9 입력 체크
+        for (int i = 1; i <= 9; i++)
         {
-            float t = music.time;
-            hits.Add(t);
-            Debug.Log($"[REC] hit @ {t:F3}s");
+            KeyCode key = KeyCode.Keypad0 + i;
+            if (Input.GetKeyDown(key))
+            {
+                float t = music.time;
+                hits.Add(new HitData { zone = i, time = t });
+                Debug.Log($"[REC] zone {i} hit @ {t:F3}s");
+            }
         }
 
-        // U로 되돌리기
+        // 되돌리기 (U)
         if (Input.GetKeyDown(KeyCode.U) && hits.Count > 0)
         {
             hits.RemoveAt(hits.Count - 1);
             Debug.Log("[REC] undo last");
         }
 
-        // S로 저장
+        // 저장 (S)
         if (Input.GetKeyDown(KeyCode.S))
         {
-            hits.Sort();
-            var json = JsonUtility.ToJson(new RawTimes { times = hits.ToArray() }, true);
-            string path = Path.Combine(Application.persistentDataPath, "raw_times.json");
+            hits.Sort((a, b) => a.time.CompareTo(b.time));
+            var json = JsonUtility.ToJson(new RawData { hits = hits.ToArray() }, true);
+            string path = Path.Combine(Application.persistentDataPath, _fileName + ".json");
             File.WriteAllText(path, json);
-            Debug.Log($" Saved raw: {path}");
+            Debug.Log($"Saved raw: {path}");
         }
     }
 
     [System.Serializable]
-    public class RawTimes { public float[] times; }
+    public class HitData
+    {
+        public int zone;
+        public float time;
+    }
+
+    [System.Serializable]
+    public class RawData
+    {
+        public HitData[] hits;
+    }
 }

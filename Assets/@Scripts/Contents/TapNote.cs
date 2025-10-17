@@ -4,6 +4,7 @@ using TMPro;
 
 public class TapNote : MonoBehaviour
 {
+    public enum HitResult { None, Perfect, Good, Miss }
 
     public TextMeshProUGUI _zoneText;
     int zoneIndex;
@@ -19,6 +20,11 @@ public class TapNote : MonoBehaviour
     float perfectWin = 0.2f;
     float goodWin = 0.5f;
 
+    // 외부에서 참조할 수 있도록 프로퍼티 추가
+    public int ZoneIndex => zoneIndex;
+    public float HitTime => hitTime;
+    public bool IsJudged => judged;
+
     public void Init(int zone, float time, AudioSource src, InputRouter inp, float jx, float approach)
     {
         zoneIndex = zone;
@@ -29,15 +35,13 @@ public class TapNote : MonoBehaviour
         approachTime = approach;
         sr = GetComponent<SpriteRenderer>();
 
-        input.OnZoneVisited += OnZoneVisited;
-
+        // 더 이상 이벤트로 구독하지 않음 (InputRouter가 직접 적절한 노트를 찾아 호출)
         _zoneText.text = zoneIndex.ToString();
     }
 
     void OnDestroy()
     {
-        if (input != null)
-            input.OnZoneVisited -= OnZoneVisited;
+        // 이벤트 구독을 하지 않으므로 해제 불필요
     }
 
     void Update()
@@ -54,23 +58,29 @@ public class TapNote : MonoBehaviour
         }
     }
 
-    void OnZoneVisited(int z, float t)
+    // InputRouter가 선택한 노트에 대해 판정을 시도하도록 public으로 노출
+    // 결과를 반환해서 호출자(InputRouter)가 후속 연출을 할 수 있게 함
+    public HitResult TryHandleHit(float t)
     {
-        z += 1;
-        if (judged)
-            return;
-
-        if (z != zoneIndex)
-            return;
+        if (judged) return HitResult.None;
 
         float diff = Mathf.Abs(t - hitTime);
 
         if (diff <= perfectWin)
+        {
             Perfect();
+            return HitResult.Perfect;
+        }
         else if (diff <= goodWin)
+        {
             Good();
+            return HitResult.Good;
+        }
         else
+        {
             Miss();
+            return HitResult.Miss;
+        }
     }
 
     void Perfect()
@@ -80,6 +90,8 @@ public class TapNote : MonoBehaviour
         sr.color = Color.cyan;
         transform.DOScale(0.7f, 0.1f).SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => Destroy(gameObject));
+
+        Managers.Object.ShowJudgeFont(transform.position, "Perfect");
     }
 
     void Good()
@@ -89,6 +101,8 @@ public class TapNote : MonoBehaviour
         sr.color = Color.yellow;
         transform.DOScale(0.7f, 0.1f).SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => Destroy(gameObject));
+
+        Managers.Object.ShowJudgeFont(transform.position, "Good");
     }
 
     void Miss()
@@ -96,6 +110,16 @@ public class TapNote : MonoBehaviour
         Debug.Log("Miss");
         judged = true;
         sr.color = Color.gray;
-        sr.DOFade(0, 0.5f).OnComplete(() => Destroy(gameObject));
+
+        // 스프라이트 페이드아웃
+        sr.DOFade(0, 0.5f);
+
+        // 텍스트도 같이 페이드아웃
+        if (_zoneText != null)
+            _zoneText.DOFade(0, 0.5f);
+
+        Managers.Object.ShowJudgeFont(transform.position, "Miss");
+
+        DOVirtual.DelayedCall(0.5f, () => Destroy(gameObject));
     }
 }

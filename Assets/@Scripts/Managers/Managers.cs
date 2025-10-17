@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using System.Resources;
-using System.Runtime.Serialization;
-using UnityEditor.EditorTools;
+
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Managers : MonoBehaviour
 {
@@ -18,7 +13,6 @@ public class Managers : MonoBehaviour
     // GameManager _game = new GameManager();
     ObjectManager _object = new ObjectManager();
 
-    //public JudgeManager _judge = new JudgeManager();
 
     //public static GameManager Game { get { return Instance?._game; } }
     public static ObjectManager Object { get { return Instance?._object; } }
