@@ -78,7 +78,7 @@ public class TapNote : MonoBehaviour
         Debug.Log("Perfect");
         judged = true;
         sr.color = Color.cyan;
-        transform.DOScale(1.3f, 0.1f).SetLoops(2, LoopType.Yoyo)
+        transform.DOScale(0.7f, 0.1f).SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => Destroy(gameObject));
     }
 
@@ -87,7 +87,7 @@ public class TapNote : MonoBehaviour
         Debug.Log("Good");
         judged = true;
         sr.color = Color.yellow;
-        transform.DOScale(1.3f, 0.1f).SetLoops(2, LoopType.Yoyo)
+        transform.DOScale(0.7f, 0.1f).SetLoops(2, LoopType.Yoyo)
             .OnComplete(() => Destroy(gameObject));
     }
 

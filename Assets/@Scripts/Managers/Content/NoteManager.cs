@@ -1,46 +1,36 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.IO;
 
 public class NoteManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class TapData 
-    {
-        public int zone;
-        public float time; 
-    }
-
     [Header("참조")]
     public AudioSource music;
     public InputRouter input;
 
     [Header("프리팹")]
-    public GameObject tapNotePrefab;
+    public GameObject tapNotePrefab; // TapNote 프리팹
+    public float approachTime = 1.0f; // 오른쪽에서 판정선까지 도달시간
 
-    float _startPosY = 0.6f;
+    private List<TapData> taps = new List<TapData>();
+    private int spawnIndex = 0;
 
-    [Header("존 (Zone_1~9)")]
-    public Transform[] zones;
-
-    [Header("설정")]
-    public float spawnX = 8f;          // 노트 생성 위치 (오른쪽)
-    public float judgeX = -4f;         // 판정선 위치 (왼쪽)
-    public float approachTime = 2.0f;  // 노트가 이동하는 시간 (1초간 접근)
-
-    [Header("테스트 패턴")]
-    public List<TapData> taps;
-    int spawnIndex = 0;
+    public Transform _startPos;
 
     void Start()
     {
+        LoadChart();
         music.Play();
     }
 
     void Update()
     {
+        if (music == null || taps.Count == 0)
+            return;
+
         float now = music.time;
 
-        // Spawn Notes 미리 등장
+        // spawnTime = hitTime - approachTime
         while (spawnIndex < taps.Count && now >= taps[spawnIndex].time - approachTime)
         {
             SpawnTap(taps[spawnIndex]);
@@ -48,18 +38,37 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    void SpawnTap(TapData data)
+    void LoadChart()
     {
-        Vector3 startPos = new(spawnX, _startPosY, 0);
-        var go = Instantiate(tapNotePrefab, startPos, Quaternion.identity);
+        string path = Path.Combine(Application.persistentDataPath, "chart_final.json");
 
+        if (!File.Exists(path))
+        {
+            Debug.LogError($"chart_final.json not found at: {path}");
+            return;
+        }
+
+        var chart = JsonUtility.FromJson<Chart>(File.ReadAllText(path));
+        taps = chart.taps;
+        taps.Sort((a, b) => a.time.CompareTo(b.time));
+        Debug.Log($" Loaded {taps.Count} notes from chart_final.json");
+    }
+
+    void SpawnTap(TapData d)
+    {
+        // 각 존 위치 찾기
+        var zone = GameObject.Find($"Zone_{d.zone}");
+        if (zone == null)
+        {
+            Debug.LogWarning($"Zone_{d.zone} not found");
+            return;
+        }
+
+        var go = Instantiate(tapNotePrefab, _startPos.position, Quaternion.identity);
         var note = go.GetComponent<TapNote>();
-        note.Init(data.zone, data.time, music, input, judgeX, approachTime);
+        note.Init(d.zone, d.time, music, input, -2.5f, approachTime);
     }
 
-    public void GetMusicTime()
-    {
-        float currentTime = music.time;          // 현재 재생된 시간(초)
-        float totalTime = music.clip.length;   // 음악 전체 길이(초)
-    }
+    [System.Serializable] public class TapData { public int zone; public float time; }
+    [System.Serializable] public class Chart { public List<TapData> taps; public int offsetMs; }
 }
