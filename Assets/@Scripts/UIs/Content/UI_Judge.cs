@@ -47,9 +47,7 @@ public class UI_Judge : MonoBehaviour
 
         canvasGroup.alpha = 0f;
 
+        Destroy(gameObject);
         onComplete?.Invoke();
     }
-
-
-
 }

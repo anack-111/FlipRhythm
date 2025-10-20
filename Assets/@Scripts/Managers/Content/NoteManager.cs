@@ -6,6 +6,14 @@ using UnityEngine.Networking;
 
 public class NoteManager : MonoBehaviour
 {
+
+    [System.Serializable] public class TapData { public int zone; public float time; }
+    public class Chart
+    {
+        public List<TapData> hits;  // ← taps → hits
+        public int offsetMs;
+    }
+
     [Header("참조")]
     public AudioSource music;
     public InputRouter input;
@@ -48,6 +56,22 @@ public class NoteManager : MonoBehaviour
         }
     }
 
+
+
+    void SpawnTap(TapData d)
+    {
+        // 각 존 위치 찾기
+        var zone = GameObject.Find($"Zone_{d.zone}");
+        if (zone == null)
+        {
+            Debug.LogWarning($"Zone_{d.zone} not found");
+            return;
+        }
+
+        var go = Instantiate(tapNotePrefab, _startPos.position, Quaternion.identity);
+        var note = go.GetComponent<TapNote>();
+        note.Init(d.zone, d.time, music, input, -2.5f, approachTime);
+    }
     IEnumerator LoadChartCoroutine()
     {
         string filename = MusicName + ".json";
@@ -153,27 +177,5 @@ public class NoteManager : MonoBehaviour
         taps = chart.hits ?? new List<TapData>();
         taps.Sort((a, b) => a.time.CompareTo(b.time));
         Debug.Log($" Loaded {taps.Count} notes from chart ({MusicName})");
-    }
-
-    void SpawnTap(TapData d)
-    {
-        // 각 존 위치 찾기
-        var zone = GameObject.Find($"Zone_{d.zone}");
-        if (zone == null)
-        {
-            Debug.LogWarning($"Zone_{d.zone} not found");
-            return;
-        }
-
-        var go = Instantiate(tapNotePrefab, _startPos.position, Quaternion.identity);
-        var note = go.GetComponent<TapNote>();
-        note.Init(d.zone, d.time, music, input, -2.5f, approachTime);
-    }
-
-    [System.Serializable] public class TapData { public int zone; public float time; }
-    public class Chart
-    {
-        public List<TapData> hits;  // ← taps → hits
-        public int offsetMs;
     }
 }

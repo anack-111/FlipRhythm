@@ -54,9 +54,12 @@ public class InputRouter : MonoBehaviour
                 Color c = Color.white;
                 switch (result)
                 {
-                    case TapNote.HitResult.Perfect: c = Color.cyan; break;
-                    case TapNote.HitResult.Good: c = Color.yellow; break;
-                    case TapNote.HitResult.Miss: c = Color.gray; break;
+                    case TapNote.HitResult.Perfect: c = Color.cyan;
+                        break;
+                    case TapNote.HitResult.Good: c = Color.yellow;
+                        break;
+                    case TapNote.HitResult.Miss: c = Color.gray;
+                        break;
                     default: c = Color.white; break;
                 }
                 zone.Flash(c, 0.12f);
