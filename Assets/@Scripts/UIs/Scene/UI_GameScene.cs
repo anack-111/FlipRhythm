@@ -12,7 +12,7 @@ using Image = UnityEngine.UI.Image;
 
 public class UI_GameScene : UI_Scene
 {
-    NoteManager _noteManager;
+ 
     #region Enum
     enum GameObjects
     {
@@ -54,18 +54,9 @@ public class UI_GameScene : UI_Scene
 
     private void Awake()
     {
-        _noteManager = FindAnyObjectByType<NoteManager>();
+    
         Init();
     }
 
-    //private void Update()
-    //{
-    //    if (_noteManager == null)
-    //        return;
-    //    float t = _noteManager.GetMusicTime();
-    //    TimeSpan time = TimeSpan.FromSeconds(t);
-    //    string str = time.ToString(@"mm\:ss\.ff");
-    //    Get<TMP_Text>((int)Texts.TimerText).text = str;
-    //}
 
 }
