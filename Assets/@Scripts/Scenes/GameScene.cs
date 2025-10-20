@@ -7,9 +7,6 @@ using UnityEngine;
 
 public class GameScene : BaseScene
 {
-
-
-
     private void Awake()
     {
         Init();
@@ -18,7 +15,7 @@ public class GameScene : BaseScene
 
     private void Start()
     {
-
+        Managers.Game.Init(GameObject.Find("FirePos").transform);
     }
     protected override void Init()
     {

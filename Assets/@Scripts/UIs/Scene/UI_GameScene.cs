@@ -16,16 +16,15 @@ public class UI_GameScene : UI_Scene
     #region Enum
     enum GameObjects
     {
-        GameHead
+
     }
     enum Buttons
     {
-
+        TouchButton
 
     }
     enum Texts
     {
-        TimerText
     }
 
     enum Images
@@ -48,15 +47,20 @@ public class UI_GameScene : UI_Scene
 
         #endregion
 
+        GetButton((int)Buttons.TouchButton).gameObject.BindEvent(OnClickTouchButton);
         return true;
     }
 
+    private void OnClickTouchButton()
+    {
+        Managers.Game.FireBlock();
+    }
 
     private void Awake()
     {
-    
         Init();
     }
+
 
 
 }

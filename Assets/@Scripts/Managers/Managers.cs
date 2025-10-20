@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 
@@ -10,11 +9,12 @@ public class Managers : MonoBehaviour
     static Managers Instance { get { Init(); return s_instance; } }
 
     #region Contents
+    GameManager _game;
     // GameManager _game = new GameManager();
     ObjectManager _object = new ObjectManager();
 
 
-    //public static GameManager Game { get { return Instance?._game; } }
+    public static GameManager Game { get { return Instance?._game; } }
     public static ObjectManager Object { get { return Instance?._object; } }
 
     #endregion
@@ -54,7 +54,13 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
-             s_instance._sound.Init();
+
+            // GameManager 컴포넌트가 없으면 추가하고 초기화한다.
+            s_instance._game = go.GetComponent<GameManager>();
+            if (s_instance._game == null)
+                s_instance._game = go.AddComponent<GameManager>();
+
+            s_instance._sound.Init();
 
         }
     }
