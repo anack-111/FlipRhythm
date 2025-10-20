@@ -27,11 +27,11 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
 
     DataManager _data = new DataManager();
-    //SoundManager _sound = new SoundManager();
+    SoundManager _sound = new SoundManager();
 
     public static DataManager Data { get { return Instance?._data; } }
 
-    //public static SoundManager Sound { get { return Instance?._sound; } }
+    public static SoundManager Sound { get { return Instance?._sound; } }
 
     public static PoolManager Pool { get { return Instance?._pool; } }
     public static ResourceManager Resource { get { return Instance?._resource; } }
@@ -54,14 +54,14 @@ public class Managers : MonoBehaviour
 
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
-            // s_instance._sound.Init();
+             s_instance._sound.Init();
 
         }
     }
 
     public static void Clear()
     {
-        // Sound.Clear();
+        Sound.Clear();
         Scene.Clear();
         UI.Clear();
         Pool.Clear();

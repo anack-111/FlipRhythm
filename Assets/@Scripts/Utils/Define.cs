@@ -68,9 +68,17 @@ public class Define
 
     public enum ENoteRule
     {
+        None,
         Avoid,
         Jump,
         Free
     }
-
+    public enum ESound
+    {
+        None,
+        Bgm,
+        SubBgm,
+        Effect,
+        Max,
+    }
 }

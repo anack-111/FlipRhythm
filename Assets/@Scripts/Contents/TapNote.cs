@@ -68,10 +68,13 @@ public class TapNote : MonoBehaviour
 
     public HitResult TryHandleHit(float t)
     {
-        if (judged) return HitResult.None;
+        if (judged)
+            return HitResult.None;
 
         float diff = Mathf.Abs(t - hitTime);
 
+
+        Managers.Sound.Play(Define.ESound.Effect, "EF_Note2");
         if (diff <= perfectWin)
         {
             Perfect();
