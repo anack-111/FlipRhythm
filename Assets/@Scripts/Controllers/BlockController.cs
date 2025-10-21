@@ -12,14 +12,14 @@ public class BlockController : BaseController
 
     private int projectileLayer, blockLayer, hitLayers;
     private bool snapped;
-    private Collider2D col;
-    private Rigidbody2D rb;
-
+    private Collider2D _col;
+    private Rigidbody2D _rb;
+    private Animator _anim;
     void Awake()
     {
-        col = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
-
+        _col = GetComponent<Collider2D>();
+        _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();    
         projectileLayer = LayerMask.NameToLayer(projectileLayerName);
         blockLayer = LayerMask.NameToLayer(blockLayerName);
 
@@ -37,17 +37,17 @@ public class BlockController : BaseController
 
         transform.Translate(Vector3.up * speed * Time.deltaTime);
 
-        Vector2 origin = new Vector2(col.bounds.center.x, col.bounds.max.y + 0.05f);
-        float checkDistance = 0.1f;
+        Vector2 origin = new Vector2(_col.bounds.center.x, _col.bounds.max.y + 0.05f);
+        float checkDistance = 0.2f;
 
         Debug.DrawRay(origin, Vector2.up * checkDistance, Color.yellow);
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, checkDistance, 1 << blockLayer);
 
-        if (hit.collider != null && hit.collider != col)
+        if (hit.collider != null && hit.collider != _col)
         {
             snapped = true;
             // 블록이 다른 블록 아래에 놓이도록 Y값을 계산
-            float myHalfHeight = col.bounds.extents.y;
+            float myHalfHeight = _col.bounds.extents.y;
             float targetY = hit.collider.bounds.min.y - myHalfHeight; // 블록 아래에 정확히 놓이도록
             Vector3 target = new Vector3(transform.position.x, targetY, transform.position.z);
             StartCoroutine(SnapToPosition(target, hit.collider.transform)); // 부모로 해당 블록의 Transform을 설정
@@ -88,13 +88,14 @@ public class BlockController : BaseController
 
     private void BecomePlaced()
     {
+        _anim.SetTrigger("Stick");
         // 이제부터 '쌓인 블록'으로 취급
         gameObject.layer = blockLayer;
 
-        if (rb)
+        if (_rb)
         {
-            rb.bodyType = RigidbodyType2D.Kinematic;
-            rb.gravityScale = 0f;
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            _rb.gravityScale = 0f;
         }
     }
 }
