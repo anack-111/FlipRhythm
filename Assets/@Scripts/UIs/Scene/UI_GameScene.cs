@@ -53,7 +53,7 @@ public class UI_GameScene : UI_Scene
 
     private void OnClickTouchButton()
     {
-        Managers.Game.FireBlock();
+        
     }
 
     private void Awake()

@@ -15,7 +15,7 @@ public class GameScene : BaseScene
 
     private void Start()
     {
-        Managers.Game.Init(GameObject.Find("FirePos").transform);
+       // Managers.Game.Init(GameObject.Find("FirePos").transform);
     }
     protected override void Init()
     {

@@ -17,15 +17,15 @@ public class ObjectManager
     {
         System.Type type = typeof(T);
 
-        if (type == typeof(BlockController))
-        {
-            GameObject go = Managers.Resource.Instantiate("Block");
-            go.transform.position = Managers.Game.FirePos.transform.position;
-            BlockController bc = go.GetOrAddComponent<BlockController>();
+        //if (type == typeof(BlockController))
+        //{
+        //    GameObject go = Managers.Resource.Instantiate("Block");
+        //    go.transform.position = Managers.Game.FirePos.transform.position;
+        //    BlockController bc = go.GetOrAddComponent<BlockController>();
 
 
-            return bc as T;
-        }
+        //    return bc as T;
+        //}
   
 
         return null;
@@ -34,15 +34,15 @@ public class ObjectManager
     {
         System.Type type = typeof(T);
 
-        if (type == typeof(BlockController))
-        {
-            GameObject go = Managers.Resource.Instantiate("Block");
-            go.transform.position = position;
-            BlockController bc = go.GetOrAddComponent<BlockController>();
+        //if (type == typeof(BlockController))
+        //{
+        //    GameObject go = Managers.Resource.Instantiate("Block");
+        //    go.transform.position = position;
+        //    BlockController bc = go.GetOrAddComponent<BlockController>();
 
 
-            return bc as T;
-        }
+        //    return bc as T;
+        //}
 
 
         return null;
