@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;  // DOTween 네임스페이스 추가
 
-public class TileController : MonoBehaviour
+public class TileController : BaseController
 {
     public float bpm = 120f;         // 음악 BPM
     public float snapDistance = 1f;  // 한 박자마다 이동할 거리
@@ -22,7 +22,8 @@ public class TileController : MonoBehaviour
 
     void Update()
     {
-        if (!moveOnBeat) return;
+        if (!moveOnBeat) 
+            return;
 
         timer += Time.deltaTime;
         if (timer >= Managers.Game.BeatInterval)
@@ -34,7 +35,7 @@ public class TileController : MonoBehaviour
 
     }
 
-    void ScaleTile()
+    virtual protected void ScaleTile()
     {
         ////타일을 작게 만들고 원래 크기로 돌아오는 연출
         //transform.DOScale(originalScale * scaleAmount, scaleDuration)  // 작게 만들기

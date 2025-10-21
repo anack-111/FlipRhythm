@@ -60,6 +60,22 @@ public class BlockController : BaseController
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Obstacle")) // 장애물과 충돌했을 때
+        {
+            ObstacleController Oc = collision.gameObject.GetComponent<ObstacleController>();
+            Destroy(Oc.gameObject);
+
+            // 블록이 터졌을 때의 처리 (예: 블록 파괴)
+            Destroy(gameObject); // 블록 파괴
+        }
+
+    }
+
+
     IEnumerator SnapToPosition(Vector3 target, Transform newParent)
     {
         BecomePlaced();
