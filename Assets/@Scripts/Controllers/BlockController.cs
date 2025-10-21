@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class BlockController : BaseController
 {
-    public float speed = 20f;
+    public float speed = 30f;
 
     [Header("Layers")]
     [SerializeField] private string projectileLayerName = "Projectile";
     [SerializeField] private string blockLayerName = "Block";
+    [SerializeField] private Transform blockParent; // 부모 객체를 위한 Transform
 
     private int projectileLayer, blockLayer, hitLayers;
     private bool snapped;
@@ -37,27 +38,29 @@ public class BlockController : BaseController
         transform.Translate(Vector3.up * speed * Time.deltaTime);
 
         Vector2 origin = new Vector2(col.bounds.center.x, col.bounds.max.y + 0.05f);
-        float checkDistance = 2f;
+        float checkDistance = 0.1f;
 
+        Debug.DrawRay(origin, Vector2.up * checkDistance, Color.yellow);
         RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, checkDistance, 1 << blockLayer);
 
         if (hit.collider != null && hit.collider != col)
         {
             snapped = true;
+            // 블록이 다른 블록 아래에 놓이도록 Y값을 계산
             float myHalfHeight = col.bounds.extents.y;
-            float targetY = hit.collider.bounds.min.y - myHalfHeight;
+            float targetY = hit.collider.bounds.min.y - myHalfHeight; // 블록 아래에 정확히 놓이도록
             Vector3 target = new Vector3(transform.position.x, targetY, transform.position.z);
-            StartCoroutine(SnapToPosition(target));
+            StartCoroutine(SnapToPosition(target, hit.collider.transform)); // 부모로 해당 블록의 Transform을 설정
         }
-        else if (transform.position.y >= 1.5f)
+        else if (transform.position.y >= 1f)
         {
             snapped = true;
-            Vector3 target = new Vector3(transform.position.x, 1.5f, transform.position.z);
-            StartCoroutine(SnapToPosition(target));
+            Vector3 target = new Vector3(transform.position.x, 1f, transform.position.z);
+            StartCoroutine(SnapToPosition(target, null)); // 부모가 없으면 그냥 놓기
         }
     }
 
-    IEnumerator SnapToPosition(Vector3 target)
+    IEnumerator SnapToPosition(Vector3 target, Transform newParent)
     {
         BecomePlaced();
 
@@ -72,7 +75,15 @@ public class BlockController : BaseController
         }
         transform.position = target;
 
-
+        // 부모 객체 설정
+        if (newParent != null)
+        {
+            transform.SetParent(newParent); // 해당 블록의 부모로 설정
+        }
+        else
+        {
+            transform.SetParent(blockParent); // 기본 부모로 설정 (여기서 blockParent는 모든 블록의 부모)
+        }
     }
 
     private void BecomePlaced()
