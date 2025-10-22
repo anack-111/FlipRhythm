@@ -94,6 +94,8 @@ public class Movement : MonoBehaviour
             case 2:
                 _gravity = gravity;
                 _rb.gravityScale = Mathf.Abs(_rb.gravityScale) * gravity;
+                MoveParticleOffset(_gravity);
+
                 break;
         }
 
@@ -122,6 +124,15 @@ public class Movement : MonoBehaviour
         }
     }
 
+
+    void MoveParticleOffset(int gravity) //파티클 오프셋 설정
+    {
+        var shape = _moveParticle.shape;
+        if (_gravity == 1)
+            shape.position = new Vector3(shape.position.x, -0.5f, shape.position.z);
+        else
+            shape.position = new Vector3(shape.position.x, 0.5f, shape.position.z);
+    }
 }
 
 
