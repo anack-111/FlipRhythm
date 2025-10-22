@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MapEditorUIManager : MonoBehaviour
@@ -11,67 +13,90 @@ public class MapEditorUIManager : MonoBehaviour
     public Button startButton;
 
     [Header("References")]
-    public Transform player;        //  플레이어 Transform
-    public Transform mapParent;     // 노트 부모 오브젝트
+    public Transform player;
+    public Transform mapParent;
 
     [Header("Prefabs")]
     public GameObject notePrefab;
+    public GameObject spikePrefab;
+    public GameObject blockPrefab;
+    public GameObject ballPrefab;
+    public GameObject shipPrefab;
+    public GameObject cubePrefab;
+    public GameObject spiderPrefab;
+    public GameObject G_OffPrefab;
+    public GameObject G_OnPrefab;
+    public GameObject UFOPrefab;
+    public GameObject WavePrefab;
 
-    [Header("Map Data")]
-    public TextAsset csvFile;
+    [Header("Data Files")]
+    public TextAsset midiCsvFile; // MIDI -> CSV로 변환한 음악 타이밍용
+    public TextAsset mapCsvFile;  // 저장된 맵 데이터 불러오기용
 
+    public string musicMapName = "DefaultMap";
+    private string currentType = "Spike";
+
+    private List<NoteMarker> noteMarkers = new();
     private List<MapObject> mapObjects = new();
-    private bool isPlaying = true;
-    private float playerSpeed = 10.4f;   //  FixedUpdate 이동 속도와 동일하게 고정
 
+    private bool isPlaying = true;
+    public float playerSpeed = 10.4f;
+
+    public bool IsEditingMode()
+    {
+        return !isPlaying;
+
+    }
     void Start()
     {
         startButton.onClick.AddListener(TogglePlay);
         timeSlider.onValueChanged.AddListener(OnSliderChanged);
-        LoadCSV();
 
-        //  음악 길이에 맞춰 맵 길이 계산
-        float mapLength = audioSource.clip.length * playerSpeed;
+        //  MIDI 기반 CSV 로드 (음악 타이밍용)
+        if (midiCsvFile != null)
+            LoadMusicCSV();
 
-        //  CSV에서 불러온 노트 생성
-        foreach (var obj in mapObjects)
-            CreateNoteMarker(obj);
+        //  저장된 맵 데이터 로드
+        if (mapCsvFile != null)
+            LoadMapCSV(mapCsvFile);
     }
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //    TogglePlay();
-
         if (isPlaying)
         {
-            // 슬라이더 진행도 업데이트
             timeSlider.value = audioSource.time / audioSource.clip.length;
-
-            // 카메라를 플레이어 위치에 맞춰 이동
             UpdateCamera();
+        }
+
+        //  클릭 시 오브젝트 배치 (UI 위 클릭 제외)
+        if (Input.GetMouseButtonDown(0) && !isPlaying && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            CreateCustomObject(pos);
+        }
+
+        //  Ctrl + S 저장
+        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
+        {
+            SaveMapCSV();
         }
     }
 
     void FixedUpdate()
     {
         if (isPlaying)
-        {
             player.position = Vector3.right * (audioSource.time * playerSpeed);
-
-
-        }
     }
 
+    //  재생/정지
     void TogglePlay()
     {
         if (isPlaying)
-        {
             audioSource.Pause();
-        }
         else
         {
-            // 오디오 시간 = 현재 플레이어 위치 기준으로 동기화 시작
             audioSource.time = player.position.x / playerSpeed;
             audioSource.Play();
         }
@@ -79,9 +104,9 @@ public class MapEditorUIManager : MonoBehaviour
         isPlaying = !isPlaying;
     }
 
+    //  슬라이더로 시간 이동
     void OnSliderChanged(float value)
     {
-        // 슬라이더를 움직이면 오디오 및 플레이어 위치 이동
         audioSource.time = value * audioSource.clip.length;
         player.position = new Vector3(audioSource.time * playerSpeed, 0, 0);
         UpdateCamera();
@@ -89,14 +114,16 @@ public class MapEditorUIManager : MonoBehaviour
 
     void UpdateCamera()
     {
-        // 카메라는 플레이어를 따라감
         Camera.main.transform.position = new Vector3(player.position.x, 0, -10);
     }
 
-    void LoadCSV()
+    // ---------------------------
+    //  음악용 MIDI CSV 로드
+    // ---------------------------
+    void LoadMusicCSV()
     {
-        mapObjects.Clear();
-        string[] lines = csvFile.text.Split('\n');
+        noteMarkers.Clear();
+        string[] lines = midiCsvFile.text.Split('\n');
 
         for (int i = 1; i < lines.Length; i++)
         {
@@ -107,29 +134,168 @@ public class MapEditorUIManager : MonoBehaviour
             if (!float.TryParse(data[6], NumberStyles.Float, CultureInfo.InvariantCulture, out timeVal))
                 continue;
 
-            MapObject obj = new MapObject
-            {
-                time = timeVal // ms → 초
-            };
-            mapObjects.Add(obj);
+            NoteMarker note = new NoteMarker { time = timeVal };
+            noteMarkers.Add(note);
+
+            CreateNoteMarker(note);
         }
 
-        Debug.Log($"Loaded {mapObjects.Count} notes from CSV.");
+        Debug.Log($" Loaded {noteMarkers.Count} MIDI note markers.");
     }
 
-    void CreateNoteMarker(MapObject obj)
+    void CreateNoteMarker(NoteMarker note)
     {
-        float xPos = obj.time * playerSpeed; //  시간 기반으로 X 위치 계산
+        float xPos = note.time * playerSpeed;
         Vector3 spawnPos = new Vector3(xPos, 0f, 0f);
-
         GameObject marker = Instantiate(notePrefab, spawnPos, Quaternion.identity);
         marker.transform.localScale = Vector3.one * 0.2f;
-        marker.name = $"Note_{obj.time:F2}";
+        marker.name = $"Note_{note.time:F2}";
+        marker.transform.SetParent(mapParent);
     }
+
+    // ---------------------------
+    //  맵 오브젝트 생성
+    // ---------------------------
+    void CreateCustomObject(Vector3 pos)
+    {
+        GameObject prefab = GetPrefabByType(currentType);
+        if (prefab == null) return;
+
+        GameObject obj = Instantiate(prefab, pos, Quaternion.identity, mapParent);
+        obj.tag = "Editable";
+        obj.name = $"{currentType}_{pos.x:F2}";
+
+        MapObject newObj = new MapObject
+        {
+            type = currentType,
+            position = pos,
+            rotation = obj.transform.eulerAngles.z
+        };
+        mapObjects.Add(newObj);
+
+        Debug.Log($" Placed {currentType} at {pos}");
+    }
+
+    // ---------------------------
+    //  프리팹 선택
+    // ---------------------------
+    public void SetObjectType(string type)
+    {
+        currentType = type;
+        Debug.Log($"[Editor] Selected object type: {type}");
+    }
+
+    GameObject GetPrefabByType(string type)
+    {
+        return type switch
+        {
+            "Spike" => spikePrefab,
+            "Block" => blockPrefab,
+            "ball" => ballPrefab,
+            "Spider" => spiderPrefab,
+            "Ship" => shipPrefab,
+            "Cube" => cubePrefab,
+            "Gravity_Off" => G_OffPrefab,
+            "Gravity_On" => G_OnPrefab,
+            "Wave" => WavePrefab,
+            "UFO" => UFOPrefab,
+            _ => null
+        };
+    }
+
+    // ---------------------------
+    //  맵 저장 (type, pos, rot)
+    // ---------------------------
+    void SaveMapCSV()
+    {
+        string folderPath = Application.dataPath + "/Data/MapData";
+        if (!Directory.Exists(folderPath))
+            Directory.CreateDirectory(folderPath);
+
+        string path = folderPath + "/" + musicMapName + "_Map.csv";
+
+        using (StreamWriter writer = new StreamWriter(path))
+        {
+            writer.WriteLine("type,x,y,z,rotation");
+
+            foreach (Transform child in mapParent)
+            {
+                // 편집 중 생성된 오브젝트만 저장
+                if (!child.CompareTag("Editable")) continue;
+
+                writer.WriteLine(
+                    $"{child.name.Split('_')[0]}," +
+                    $"{child.position.x.ToString(CultureInfo.InvariantCulture)}," +
+                    $"{child.position.y.ToString(CultureInfo.InvariantCulture)}," +
+                    $"{child.position.z.ToString(CultureInfo.InvariantCulture)}," +
+                    $"{child.eulerAngles.z.ToString(CultureInfo.InvariantCulture)}"
+                );
+            }
+        }
+
+        Debug.Log($" Saved map objects from current Scene transforms to: {path}");
+    }
+
+
+    // ---------------------------
+    //  맵 로드
+    // ---------------------------
+    void LoadMapCSV(TextAsset mapFile)
+    {
+        mapObjects.Clear();
+        string[] lines = mapFile.text.Split('\n');
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            if (string.IsNullOrWhiteSpace(lines[i])) continue;
+            string[] data = lines[i].Trim().Split(',');
+            if (data.Length < 5) continue;
+
+            string typeVal = data[0];
+            float x = float.Parse(data[1], CultureInfo.InvariantCulture);
+            float y = float.Parse(data[2], CultureInfo.InvariantCulture);
+            float z = float.Parse(data[3], CultureInfo.InvariantCulture);
+            float rot = float.Parse(data[4], CultureInfo.InvariantCulture);
+
+            MapObject obj = new MapObject
+            {
+                type = typeVal,
+                position = new Vector3(x, y, z),
+                rotation = rot
+            };
+            mapObjects.Add(obj);
+
+            GameObject prefab = GetPrefabByType(typeVal);
+            if (prefab != null)
+                Instantiate(prefab, obj.position, Quaternion.Euler(0, 0, rot), mapParent);
+        }
+
+        Debug.Log($" Loaded {mapObjects.Count} map objects from {mapFile.name}");
+    }
+
+    public void RemoveObject(MapEditableObject obj)
+    {
+        if (mapObjects.Contains(obj.linkedData))
+            mapObjects.Remove(obj.linkedData);
+
+        Debug.Log($"Removed object: {obj.linkedData.type}");
+    }
+
+
 }
 
+//  MIDI 기반 노트 마커 데이터
+[System.Serializable]
+public class NoteMarker
+{
+    public float time;
+}
+
+// 맵 오브젝트 데이터
 [System.Serializable]
 public class MapObject
 {
-    public float time;
+    public string type;
+    public Vector3 position;
+    public float rotation;
 }
