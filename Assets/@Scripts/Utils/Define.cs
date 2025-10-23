@@ -24,6 +24,30 @@ public class Define
         UI,
     }
 
+    public enum ETileType
+    {
+        
+        Block,
+        Block_1x5,
+        Block_1x10,
+        Block_2x1,
+        Block_2x2,
+        Block_2x5,
+        Block_2x10,
+        Block_5x1,
+        Spike,
+        PT_Ball,
+        PT_Cube,
+        PT_Gravityfalse,
+        PT_GravityOn,
+        PT_Ship,
+        PT_Spider,
+        PT_UFO,
+        PT_Wave,
+        Block_10x2
+
+    }
+
 
     public enum ESpeed
     {

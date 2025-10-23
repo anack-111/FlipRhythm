@@ -40,4 +40,12 @@ public static class Extension
             Managers.Resource.Destroy(child.gameObject);
         }
     }
+
+    public static string FormatTime(float time)
+    {
+        int minutes = Mathf.FloorToInt(time / 60);
+        int seconds = Mathf.FloorToInt(time % 60);
+        return $"{minutes:00}:{seconds:00}";
+    }
+
 }
