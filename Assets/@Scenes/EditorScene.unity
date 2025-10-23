@@ -3581,16 +3581,16 @@ MonoBehaviour:
   timeSlider: {fileID: 790153665}
   startButton: {fileID: 2057428125}
   saveButton: {fileID: 668934483}
+  timeText: {fileID: 486317153}
   player: {fileID: 4780406049320974436}
   mapParent: {fileID: 1165081308}
   midiCsvFile: {fileID: 4900000, guid: 5dd7ea6eea415e14ba968a1ba0c39e0a, type: 3}
   mapCsvFile: {fileID: 4900000, guid: c5734c76431e25b4f9a8e3ea10bd5a86, type: 3}
   musicMapName: DuDu
   playerSpeed: 10.4
-  selectedNoteX: 0
   prefabManager: {fileID: 0}
   notePrefab: {fileID: 8668370260006002226, guid: 237542389d1763145b9d53e22b37482e, type: 3}
-  timeText: {fileID: 486317153}
+  selectedNoteX: 0
 --- !u!4 &1344787190
 Transform:
   m_ObjectHideFlags: 0

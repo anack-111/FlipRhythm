@@ -44,7 +44,8 @@ public class Define
         PT_Spider,
         PT_UFO,
         PT_Wave,
-        Block_10x2
+        Block_10x2,
+        Block_10x1
 
     }
 

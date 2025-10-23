@@ -14,70 +14,61 @@ public class MapEditorUIManager : MonoBehaviour
     public Slider timeSlider;
     public Button startButton;
     public Button saveButton;
+    public TextMeshProUGUI timeText;
 
     [Header("References")]
     public Transform player;
     public Transform mapParent;
 
     [Header("Data Files")]
-    public TextAsset midiCsvFile; // MIDI -> CSV로 변환한 음악 타이밍용
-    public TextAsset mapCsvFile;  // 저장된 맵 데이터 불러오기용
+    public TextAsset midiCsvFile;
+    public TextAsset mapCsvFile;
 
     public string musicMapName = "DefaultMap";
-    private string currentType = "Spike";
-
-    private List<NoteMarker> noteMarkers = new();
-    private List<MapObject> mapObjects = new();
 
     private bool isPlaying = true;
     public float playerSpeed = 10.4f;
 
-    [HideInInspector] public float selectedNoteX = 0f;
     [SerializeField] private PrefabManager prefabManager;
     [SerializeField] public GameObject notePrefab;
-    public TextMeshProUGUI timeText;
 
+    private List<NoteMarker> noteMarkers = new();
+    private List<MapObject> mapObjects = new();
 
+    [HideInInspector] public float selectedNoteX = 0f;
     private void Awake()
     {
 #if UNITY_EDITOR
-        // 에디터 환경에서 SO 파일 직접 로드
         prefabManager = AssetDatabase.LoadAssetAtPath<PrefabManager>("Assets/Editor/PrefabManager.asset");
         if (prefabManager == null)
         {
-            Debug.LogError(" PrefabManager.asset을 찾을 수 없습니다! 경로를 확인하세요.");
+            Debug.LogError("PrefabManager.asset을 찾을 수 없습니다! 경로를 확인하세요.");
         }
         else
         {
-            prefabManager.LoadAllPrefabs(); // 폴더 내 프리팹 자동 로드
+            prefabManager.LoadAllPrefabs();
         }
 #else
-    Debug.LogWarning("PrefabManager는 에디터 환경에서만 로드됩니다.");
+        Debug.LogWarning("PrefabManager는 에디터 환경에서만 로드됩니다.");
 #endif
     }
-    public bool IsEditingMode()
-    {
-        return !isPlaying;
 
-    }
     void Start()
     {
         startButton.onClick.AddListener(TogglePlay);
         saveButton.onClick.AddListener(SaveMapCSV);
-
         timeSlider.onValueChanged.AddListener(OnSliderChanged);
 
-        //  MIDI 기반 CSV 로드 (음악 타이밍용)
         if (midiCsvFile != null)
             LoadMusicCSV();
 
-        //  저장된 맵 데이터 로드
         if (mapCsvFile != null)
             LoadMapCSV(mapCsvFile);
     }
 
     void Update()
     {
+        // 현재 시간 표시
         if (audioSource != null && audioSource.clip != null && timeText != null)
         {
             float currentTime = audioSource.time;
@@ -91,19 +82,9 @@ public class MapEditorUIManager : MonoBehaviour
             UpdateCamera();
         }
 
-        ////  클릭 시 오브젝트 배치 (UI 위 클릭 제외)
-        //if (Input.GetMouseButtonDown(0) && !isPlaying && !EventSystem.current.IsPointerOverGameObject())
-        //{
-        //    Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    pos.z = 0;
-        //    CreateCustomObject(pos);
-        //}
-
-        //  Ctrl + S 저장
+        // Ctrl + S 저장
         if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.S))
-        {
             SaveMapCSV();
-        }
     }
 
     void FixedUpdate()
@@ -112,7 +93,9 @@ public class MapEditorUIManager : MonoBehaviour
             player.position = Vector3.right * (audioSource.time * playerSpeed);
     }
 
-    //  재생/정지
+    // ---------------------------
+    // 재생 / 정지
+    // ---------------------------
     void TogglePlay()
     {
         if (isPlaying)
@@ -126,7 +109,6 @@ public class MapEditorUIManager : MonoBehaviour
         isPlaying = !isPlaying;
     }
 
-    //  슬라이더로 시간 이동
     void OnSliderChanged(float value)
     {
         audioSource.time = value * audioSource.clip.length;
@@ -140,7 +122,7 @@ public class MapEditorUIManager : MonoBehaviour
     }
 
     // ---------------------------
-    //  음악용 MIDI CSV 로드
+    // MIDI CSV 로드
     // ---------------------------
     void LoadMusicCSV()
     {
@@ -152,82 +134,42 @@ public class MapEditorUIManager : MonoBehaviour
             if (string.IsNullOrWhiteSpace(lines[i])) continue;
             string[] data = lines[i].Trim().Split(',');
 
-            float timeVal;
-            if (!float.TryParse(data[6], NumberStyles.Float, CultureInfo.InvariantCulture, out timeVal))
+            if (!float.TryParse(data[6], NumberStyles.Float, CultureInfo.InvariantCulture, out float timeVal))
                 continue;
 
             NoteMarker note = new NoteMarker { time = timeVal };
             noteMarkers.Add(note);
-
             CreateNoteMarker(note);
         }
 
-        Debug.Log($" Loaded {noteMarkers.Count} MIDI note markers.");
-    }
-
-
-    public void RegisterGridGroup(GameObject gridGroup)
-    {
-        foreach (Transform child in gridGroup.transform)
-        {
-            TileController tile = child.GetComponent<TileController>();
-            if (tile == null) continue;
-
-            MapObject obj = new MapObject
-            {
-                type = tile.TileType.ToString(),
-                position = child.position,
-                rotation = child.eulerAngles.z
-            };
-            mapObjects.Add(obj);
-        }
+        Debug.Log($"Loaded {noteMarkers.Count} MIDI note markers.");
     }
 
     void CreateNoteMarker(NoteMarker note)
     {
-        // --- 노트 전용 부모 그룹 확보 ---
         Transform notesParent = mapParent.Find("NoteMarkers");
         if (notesParent == null)
         {
             GameObject noteGroup = new GameObject("NoteMarkers");
             noteGroup.transform.SetParent(mapParent);
-            noteGroup.transform.localPosition = Vector3.zero;
             notesParent = noteGroup.transform;
         }
 
-        // --- 노트 생성 ---
         float xPos = note.time * playerSpeed;
         Vector3 spawnPos = new Vector3(xPos, 0f, 0f);
+        GameObject marker = Instantiate(notePrefab, spawnPos, Quaternion.identity, notesParent);
 
-        GameObject marker = Instantiate(notePrefab, spawnPos, Quaternion.identity);
         marker.transform.localScale = Vector3.one * 0.2f;
         marker.name = $"Note_{note.time:F2}";
-        marker.transform.SetParent(notesParent);
 
-        // --- 클릭 가능하도록 Collider + Script 추가 ---
         if (marker.GetComponent<Collider2D>() == null)
             marker.AddComponent<BoxCollider2D>();
-
         if (marker.GetComponent<NoteSelectable>() == null)
             marker.AddComponent<NoteSelectable>();
     }
 
     // ---------------------------
-    //  프리팹 선택
-    // ---------------------------
-    public void SetObjectType(string type)
-    {
-        currentType = type;
-        Debug.Log($"[Editor] Selected object type: {type}");
-    }
-
-    GameObject GetPrefabByType(string type)
-    {
-        return prefabManager.GetPrefabByType(type);
-    }
-
-    // ---------------------------
-    //  맵 저장 (type, pos, rot)
+    // 맵 저장 (프리팹 루트 단위)
     // ---------------------------
     public void SaveMapCSV()
     {
@@ -235,58 +177,33 @@ public class MapEditorUIManager : MonoBehaviour
         if (!Directory.Exists(folderPath))
             Directory.CreateDirectory(folderPath);
 
-        string path = folderPath + "/" + musicMapName + "_Map.csv";
+        string path = $"{folderPath}/{musicMapName}_Map.csv";
         using (StreamWriter writer = new StreamWriter(path))
         {
             writer.WriteLine("type,x,y,z,rotation");
 
-            foreach (Transform group in mapParent)
+            foreach (Transform obj in mapParent)
             {
-                // NoteMarkers 무시
-                if (group.name == "NoteMarkers")
+                if (obj.name == "NoteMarkers")
                     continue;
 
-                // 그룹 구조라면 자식까지 저장
-                if (group.childCount > 0)
-                {
-                    foreach (Transform child in group)
-                    {
-                        TileController tile = child.GetComponent<TileController>();
-                        if (tile == null) continue;
-
-                        writer.WriteLine(
-                            $"{tile.TileType}," +
-                            $"{child.position.x.ToString(CultureInfo.InvariantCulture)}," +
-                            $"{child.position.y.ToString(CultureInfo.InvariantCulture)}," +
-                            $"{child.position.z.ToString(CultureInfo.InvariantCulture)}," +
-                            $"{child.eulerAngles.z.ToString(CultureInfo.InvariantCulture)}"
-                        );
-                    }
-                }
-                //  개별 오브젝트라면 본인도 검사해서 저장
-                else
-                {
-                    TileController tile = group.GetComponent<TileController>();
-                    if (tile == null) continue;
-
-                    writer.WriteLine(
-                        $"{tile.TileType}," +
-                        $"{group.position.x.ToString(CultureInfo.InvariantCulture)}," +
-                        $"{group.position.y.ToString(CultureInfo.InvariantCulture)}," +
-                        $"{group.position.z.ToString(CultureInfo.InvariantCulture)}," +
-                        $"{group.eulerAngles.z.ToString(CultureInfo.InvariantCulture)}"
-                    );
-                }
+                //  부모 프리팹 단위로 저장 (자식 무시)
+                string prefabName = obj.name.Replace("(Clone)", "").Trim();
+                writer.WriteLine(
+                    $"{prefabName}," +
+                    $"{obj.position.x.ToString(CultureInfo.InvariantCulture)}," +
+                    $"{obj.position.y.ToString(CultureInfo.InvariantCulture)}," +
+                    $"{obj.position.z.ToString(CultureInfo.InvariantCulture)}," +
+                    $"{obj.eulerAngles.z.ToString(CultureInfo.InvariantCulture)}"
+                );
             }
         }
 
         Debug.Log($" 맵 저장 완료: {path}");
     }
 
-
-
     // ---------------------------
-    //  맵 로드
+    // 맵 로드 (프리팹 그대로 복원)
     // ---------------------------
     public void LoadMapCSV(TextAsset csv)
     {
@@ -306,66 +223,27 @@ public class MapEditorUIManager : MonoBehaviour
             float z = float.Parse(data[3], CultureInfo.InvariantCulture);
             float rot = float.Parse(data[4], CultureInfo.InvariantCulture);
 
-            MapObject obj = new MapObject
+            GameObject prefab = prefabManager.GetPrefabByType(type);
+            if (prefab == null)
             {
-                type = type,
-                position = new Vector3(x, y, z),
-                rotation = rot
-            };
-            mapObjects.Add(obj);
+                Debug.LogWarning($"[Load] '{type}' 프리팹을 찾을 수 없습니다.");
+                continue;
+            }
 
-            GameObject prefab = GetPrefabByType(type);
-            if (prefab != null)
-                Instantiate(prefab, obj.position, Quaternion.Euler(0, 0, rot), mapParent);
+            GameObject obj = Instantiate(prefab, new Vector3(x, y, z), Quaternion.Euler(0, 0, rot), mapParent);
+            obj.name = type;
         }
 
-        Debug.Log($" 맵 불러오기 완료 ({mapObjects.Count}개 오브젝트)");
+        Debug.Log(" 맵 불러오기 완료");
     }
-
-    public void RemoveObject(MapEditableObject obj)
-    {
-        if (mapObjects.Contains(obj.linkedData))
-            mapObjects.Remove(obj.linkedData);
-
-        Debug.Log($"Removed object: {obj.linkedData.type}");
-    }
-
-
-
-    #region 임시폐기
-    // ---------------------------
-    //  맵 오브젝트 생성
-    // ---------------------------
-    void CreateCustomObject(Vector3 pos)
-    {
-        GameObject prefab = GetPrefabByType(currentType);
-        if (prefab == null) return;
-
-        GameObject obj = Instantiate(prefab, pos, Quaternion.identity, mapParent);
-        obj.tag = "Editable";
-        obj.name = $"{currentType}_{pos.x:F2}";
-
-        MapObject newObj = new MapObject
-        {
-            type = currentType,
-            position = pos,
-            rotation = obj.transform.eulerAngles.z
-        };
-        mapObjects.Add(newObj);
-
-        Debug.Log($" Placed {currentType} at {pos}");
-    }
-    #endregion
 }
 
-//  MIDI 기반 노트 마커 데이터
+// ------------------------------------
+// 데이터 구조
+// ------------------------------------
 [System.Serializable]
-public class NoteMarker
-{
-    public float time;
-}
+public class NoteMarker { public float time; }
 
-// 맵 오브젝트 데이터
 [System.Serializable]
 public class MapObject
 {
